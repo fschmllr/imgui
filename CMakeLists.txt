@@ -28,11 +28,9 @@ foreach(backend IN LISTS imgui_backends)
 
     if(IMGUI_USE_BACKEND_${backend})
           if(${backend} STREQUAL "osx" OR ${backend} STREQUAL "metal")
-              set(imgui_backend_files "${imgui_backend_files} ${CMAKE_CURRENT_SOURCE_DIR}/backends/imgui_impl_${backend}.h ${CMAKE_CURRENT_SOURCE_DIR}/backends/imgui_impl_${backend}.mm")
+              list(APPEND imgui_backend_files "${CMAKE_CURRENT_SOURCE_DIR}/backends/imgui_impl_${backend}.h ${CMAKE_CURRENT_SOURCE_DIR}/backends/imgui_impl_${backend}.mm")
           else()
-              set(imgui_backend_files "${imgui_backend_files} ${CMAKE_CURRENT_SOURCE_DIR}/backends/imgui_impl_${backend}.h ${CMAKE_CURRENT_SOURCE_DIR}/backends/imgui_impl_${backend}.cpp")
+              list(APPEND imgui_backend_files "${CMAKE_CURRENT_SOURCE_DIR}/backends/imgui_impl_${backend}.h ${CMAKE_CURRENT_SOURCE_DIR}/backends/imgui_impl_${backend}.cpp")
           endif()
     endif()
 endforeach()
-message(${imgui_backend_files})
-
